@@ -1,5 +1,7 @@
 from collections import defaultdict
 from time import time
+import sys
+
 
 class Distance:
 	__metrics = ["euclidean", "cosine", "manhattan"]
@@ -170,5 +172,12 @@ class Distance:
 			return self.distance <= other.distance
 		else:
 			return self.distance >= other.distance
+
+if __name__ == "__main__":
+	metric = sys.argv[1]
+	numbers = sys.argv[2:]
+	numbers = [float(i) for i in numbers]
 	
-			
+	do = Distance(metric, *numbers)
+	dist = do.distance_calculator()
+	print(do)
