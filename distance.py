@@ -1,4 +1,5 @@
 from collections import defaultdict
+from time import time
 
 class Distance:
 	__metrics = ["euclidean", "cosine", "manhattan"]
@@ -25,7 +26,16 @@ class Distance:
 											"cosine":self.cosine_distance(), 
 											"manhattan":self.manhattan_distance()}
 	
-
+	def timer(func):
+		def wrapper(self):
+			ts = time()
+			distance = func(self)
+			te = time()
+			self.time = te - ts
+			return distance
+		return wrapper
+	
+	@timer
 	def distance_calculator(self):
 		self.distance_called = True
 		self.distance = self.__metric_functions[self.metric]
