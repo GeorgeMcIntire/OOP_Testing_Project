@@ -174,15 +174,23 @@ class Distance:
             return self.distance >= other.distance
 
 
-#def get_args():
-#    
+def convert_input_numbers(value):    
+    number = float(value)
+    return number
+    
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--metric", type = str, help = "Choose the desired distance metric", required = True)
+    parser.add_argument("-n", "--numbers", nargs = "+", type = convert_input_numbers, help = "Pass in the numbers for which you wish to calculate distance", required = True)
+    args = parser.parse_args()
+    return args 
+    
+
+
 
 
 if __name__ == "__main__":
-    metric = sys.argv[1]
-    numbers = sys.argv[2:]
-    numbers = [float(i) for i in numbers]
-    
-    do = Distance(metric, *numbers)
+    args = get_args()
+    do = Distance(args.metric, *args.numbers)
     dist = do.distance_calculator()
     print(do)
