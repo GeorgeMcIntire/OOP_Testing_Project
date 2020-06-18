@@ -1,7 +1,7 @@
 from collections import defaultdict
 from time import time
-import sys
-
+#import sys
+import argparse
 
 class Distance:
     __metrics = ["euclidean", "cosine", "manhattan"]
@@ -172,6 +172,11 @@ class Distance:
             return self.distance <= other.distance
         else:
             return self.distance >= other.distance
+
+
+#def get_args():
+#    
+
 
 if __name__ == "__main__":
     metric = sys.argv[1]
